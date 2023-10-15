@@ -5,13 +5,13 @@ namespace cakes
 {
     internal class Program
     {
-        static int give_me_money_baby(int i, List<string[]> argument, List<int[]> cost)
+        
+        static int give_me_info_baby(int i, List<string[]> argument, List<int[]> cost)
         {
             int index = argument[i].Count();
             function.print(index, argument[i], cost[i]);
             int second_index = function.arrow_menu(index);
-            int price = cost[i][second_index];
-            return price;
+            return second_index;
         }
         /*Боль сама по себе очень важна, за обучением ученика будет следить, но это происходит в такое время, когда работы и боли много.
         Если говорить до мельчайших деталей, никто не должен заниматься никакой работой, кроме как для того, чтобы получить от нее какой-нибудь хороший результат.
@@ -22,7 +22,6 @@ namespace cakes
          */
         static void Main(string[] args)
         {
-            File.Create("C:\\Users\\1\\Desktop\\text.txt");
             Console.CursorVisible = false;
             int price = 0;
             cake cake = new cake();
@@ -56,7 +55,6 @@ namespace cakes
                 Console.WriteLine("  7. Выход");
                 Console.ResetColor();
                 int index = 7;
-                int second_index;
                 ConsoleKey key = ConsoleKey.Q;
                 int position = 2;
                 while (key != ConsoleKey.Enter)
@@ -82,35 +80,64 @@ namespace cakes
                 switch (position)
                 {
                     case 2:
-                        price += give_me_money_baby(position - 2, argument, cost);
+                        index = give_me_info_baby(position - 2, argument, cost);
+                        cake.size = argument[position - 2][index];
+                        price += cost[position-2][index];
                         break;
                     case 3:
-                        price += give_me_money_baby(position - 2, argument, cost);
+                        index = give_me_info_baby(position - 2, argument, cost);
+                        cake.foarm = argument[position - 2][index];
+                        price += cost[position - 2][index];
                         break;
                     case 4:
-                        price += give_me_money_baby(position - 2, argument, cost);
+                        index = give_me_info_baby(position - 2, argument, cost);
+                        cake.taste = argument[position - 2][index];
+                        price += cost[position - 2][index];
                         break;
                     case 5:
-                        price += give_me_money_baby(position - 2, argument, cost);
+                        index = give_me_info_baby(position - 2, argument, cost);
+                        cake.number_of_cakes = argument[position - 2][index];
+                        price += cost[position - 2][index];
                         break;
                     case 6:
-                        price += give_me_money_baby(position - 2, argument, cost);
+                        index = give_me_info_baby(position - 2, argument, cost);
+                        cake.glaze = argument[position - 2][index];
+                        price += cost[position - 2][index];
                         break;
                     case 7:
-                        price += give_me_money_baby(position - 2, argument, cost);
+                        index = give_me_info_baby(position - 2, argument, cost);
+                        cake.decorations = argument[position - 2][index];
+                        price += cost[position - 2][index];
                         break;
                     case 8:
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("-------------------------------");
                         Console.WriteLine("Сохранить заказ?");
-                        Console.WriteLine("1. Да");
-                        Console.WriteLine("2. Нет");
-                        int question = Convert.ToInt32(Console.ReadLine());
-                        switch (question)
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("->1. Да");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("  2. Нет");
+
+                        position = function.arrow_menu(2);
+                        
+                        switch (position)
                         {
                             case 1:
-
+                                DateTime dateOrder = DateTime.Now;
+                                string[] order = new string[8];
+                                order[0] = $"Дата заказа: {Convert.ToString(dateOrder)}";
+                                order[1] = $"\tразмер: {cake.size}";
+                                order[2] = $"\tформа: {cake.foarm}";
+                                order[3] = $"\tвкус: {cake.taste}";
+                                order[4] = $"\tкол-во коржей: {cake.number_of_cakes}";
+                                order[5] = $"\tглазурь: {cake.glaze}";
+                                order[6] = $"\tдекор: {cake.decorations}";
+                                order[7] = $"\tстоимость: {price}";
+                                File.WriteAllLines("order.txt", order);
                                 break;
                             case 2:
-
+                                Environment.Exit(0);
                                 break;
                         }
                         Environment.Exit(1);

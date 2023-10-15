@@ -12,10 +12,9 @@ namespace cakes
         public string size;
         public string foarm;
         public string taste;
-        public int number_of_cakes;
+        public string number_of_cakes;
         public string glaze;
         public string decorations;
-        public int cost;
     }
 
 }
