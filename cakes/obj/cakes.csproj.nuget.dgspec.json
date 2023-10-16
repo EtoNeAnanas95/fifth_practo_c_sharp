@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Eto_Ne_Ananas95\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\cakes.csproj": {}
+    "C:\\Users\\1\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\cakes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Eto_Ne_Ananas95\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\cakes.csproj": {
+    "C:\\Users\\1\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\cakes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Eto_Ne_Ananas95\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\cakes.csproj",
+        "projectUniqueName": "C:\\Users\\1\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\cakes.csproj",
         "projectName": "cakes",
-        "projectPath": "C:\\Users\\Eto_Ne_Ananas95\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\cakes.csproj",
-        "packagesPath": "C:\\Users\\Eto_Ne_Ananas95\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Eto_Ne_Ananas95\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\obj\\",
+        "projectPath": "C:\\Users\\1\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\cakes.csproj",
+        "packagesPath": "C:\\Users\\1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\1\\Source\\Repos\\fifth_practo_c_sharp\\cakes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Eto_Ne_Ananas95\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

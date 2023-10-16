@@ -39,7 +39,7 @@ namespace cakes
                 if (key == ConsoleKey.Escape)
                 {
                     Console.Clear();
-                    break;
+                    return -1;
                 }
                 if (key == ConsoleKey.Enter) Console.Clear();
             }

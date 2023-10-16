@@ -17,8 +17,6 @@ namespace cakes
         Если говорить до мельчайших деталей, никто не должен заниматься никакой работой, кроме как для того, чтобы получить от нее какой-нибудь хороший результат.
         
          **София Алексеевна 
-         
-         а нафига именно латинский? Можно же было на клингонском написать))
          */
         static void Main(string[] args)
         {
@@ -55,9 +53,9 @@ namespace cakes
                 Console.WriteLine("  7. Выход");
                 Console.ResetColor();
                 int index = 7;
-                ConsoleKey key = ConsoleKey.Q;
+                ConsoleKey key;
                 int position = 2;
-                while (key != ConsoleKey.Enter)
+                do
                 {
 
                     key = Console.ReadKey().Key;
@@ -70,77 +68,103 @@ namespace cakes
                             if (position > 2) position--;
                             break;
                         case ConsoleKey.DownArrow:
-                            if (position < index+1) position++;
+                            if (position < index + 1) position++;
                             break;
                     }
                     Console.SetCursorPosition(0, position);
                     Console.WriteLine("->");
                     Console.ResetColor();
                 }
+                while (key != ConsoleKey.Enter);
                 switch (position)
                 {
                     case 2:
                         index = give_me_info_baby(position - 2, argument, cost);
-                        cake.size = argument[position - 2][index];
+                        if (index != -1) cake.size = argument[position - 2][index];
+                        else break;
                         price += cost[position-2][index];
                         break;
                     case 3:
                         index = give_me_info_baby(position - 2, argument, cost);
-                        cake.foarm = argument[position - 2][index];
+                        if (index != -1) cake.foarm = argument[position - 2][index];
+                        else break;
                         price += cost[position - 2][index];
                         break;
                     case 4:
                         index = give_me_info_baby(position - 2, argument, cost);
-                        cake.taste = argument[position - 2][index];
+                        if (index != -1) cake.taste = argument[position - 2][index];
+                        else break;
                         price += cost[position - 2][index];
                         break;
                     case 5:
                         index = give_me_info_baby(position - 2, argument, cost);
-                        cake.number_of_cakes = argument[position - 2][index];
+                        if (index != -1) cake.number_of_cakes = argument[position - 2][index];
+                        else break;
                         price += cost[position - 2][index];
                         break;
                     case 6:
                         index = give_me_info_baby(position - 2, argument, cost);
-                        cake.glaze = argument[position - 2][index];
+                        if (index != -1) cake.glaze = argument[position - 2][index];
+                        else break;
                         price += cost[position - 2][index];
                         break;
                     case 7:
                         index = give_me_info_baby(position - 2, argument, cost);
-                        cake.decorations = argument[position - 2][index];
+                        if (index != -1) cake.decorations = argument[position - 2][index];
+                        else break;
                         price += cost[position - 2][index];
                         break;
                     case 8:
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("-------------------------------");
+                        Console.WriteLine("--------------------------------------------");
                         Console.WriteLine("Сохранить заказ?");
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("->1. Да");
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("  2. Нет");
-
-                        position = function.arrow_menu(2);
-                        
-                        switch (position)
+                        index = function.arrow_menu(2);
+                        if (index !=  -1)
                         {
-                            case 1:
-                                DateTime dateOrder = DateTime.Now;
-                                string[] order = new string[8];
-                                order[0] = $"Дата заказа: {Convert.ToString(dateOrder)}";
-                                order[1] = $"\tразмер: {cake.size}";
-                                order[2] = $"\tформа: {cake.foarm}";
-                                order[3] = $"\tвкус: {cake.taste}";
-                                order[4] = $"\tкол-во коржей: {cake.number_of_cakes}";
-                                order[5] = $"\tглазурь: {cake.glaze}";
-                                order[6] = $"\tдекор: {cake.decorations}";
-                                order[7] = $"\tстоимость: {price}";
-                                File.WriteAllLines("order.txt", order);
-                                break;
-                            case 2:
-                                Environment.Exit(0);
-                                break;
+                            switch (index)
+                            {
+                                case 0:
+                                    Console.Clear();
+                                    if (cake.size == null || cake.foarm == null || cake.glaze == null || cake.taste == null || cake.decorations == null || cake.number_of_cakes  == null)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Cyan;
+                                        Console.WriteLine("Вы не настроили торт до конца");
+                                        Console.WriteLine("Настройте его и возвращайтесь к выходу)");
+                                        Console.ForegroundColor = ConsoleColor.Yellow;
+                                        Console.WriteLine("\nДля возвращения в меню настроек нажмите любую кнопку");
+                                        key = Console.ReadKey().Key;
+                                        Console.ResetColor();
+                                        Console.Clear();
+                                    }
+                                    else
+                                    {
+                                    DateTime dateOrder = DateTime.Now;
+                                    string[] order = new string[8];
+                                    order[0] = $"Дата заказа: {Convert.ToString(dateOrder)}";
+                                    order[1] = $"\tразмер: {cake.size}";
+                                    order[2] = $"\tформа: {cake.foarm}";
+                                    order[3] = $"\tвкус: {cake.taste}";
+                                    order[4] = $"\tкол-во коржей: {cake.number_of_cakes}";
+                                    order[5] = $"\tглазурь: {cake.glaze}";
+                                    order[6] = $"\tдекор: {cake.decorations}";
+                                    order[7] = $"\tстоимость: {price}";
+                                    File.AppendAllLines("order.txt", order);
+                                    Environment.Exit(0);
+                                    }
+                                    break;
+                                case 1:
+                                    Console.Clear();
+                                    Console.WriteLine("ya nichego ne vivel");
+                                    Environment.Exit(0);
+                                    break;
+                                default: break;
+                            }
                         }
-                        Environment.Exit(1);
                         break;
                 }
             }
