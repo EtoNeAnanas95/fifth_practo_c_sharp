@@ -51,8 +51,11 @@ namespace cakes
                 Console.WriteLine("  5. Глазурь");
                 Console.WriteLine("  6. Декор");
                 Console.WriteLine("  7. Выход");
-                Console.ResetColor();
                 int index = 7;
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.SetCursorPosition(0, index+3);
+                Console.WriteLine($"Цена заказа: {price}");
+                Console.ResetColor();
                 ConsoleKey key;
                 int position = 2;
                 do
@@ -124,47 +127,7 @@ namespace cakes
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("  2. Нет");
                         index = function.arrow_menu(2);
-                        if (index !=  -1)
-                        {
-                            switch (index)
-                            {
-                                case 0:
-                                    Console.Clear();
-                                    if (cake.size == null || cake.foarm == null || cake.glaze == null || cake.taste == null || cake.decorations == null || cake.number_of_cakes  == null)
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Cyan;
-                                        Console.WriteLine("Вы не настроили торт до конца");
-                                        Console.WriteLine("Настройте его и возвращайтесь к выходу)");
-                                        Console.ForegroundColor = ConsoleColor.Yellow;
-                                        Console.WriteLine("\nДля возвращения в меню настроек нажмите любую кнопку");
-                                        key = Console.ReadKey().Key;
-                                        Console.ResetColor();
-                                        Console.Clear();
-                                    }
-                                    else
-                                    {
-                                    DateTime dateOrder = DateTime.Now;
-                                    string[] order = new string[8];
-                                    order[0] = $"Дата заказа: {Convert.ToString(dateOrder)}";
-                                    order[1] = $"\tразмер: {cake.size}";
-                                    order[2] = $"\tформа: {cake.foarm}";
-                                    order[3] = $"\tвкус: {cake.taste}";
-                                    order[4] = $"\tкол-во коржей: {cake.number_of_cakes}";
-                                    order[5] = $"\tглазурь: {cake.glaze}";
-                                    order[6] = $"\tдекор: {cake.decorations}";
-                                    order[7] = $"\tстоимость: {price}";
-                                    File.AppendAllLines("order.txt", order);
-                                    Environment.Exit(0);
-                                    }
-                                    break;
-                                case 1:
-                                    Console.Clear();
-                                    Console.WriteLine("ya nichego ne vivel");
-                                    Environment.Exit(0);
-                                    break;
-                                default: break;
-                            }
-                        }
+                        function.save_the_order(cake, index, price);
                         break;
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace cakes
             }
             return position-2;
         }
-        public static string print(int index, string[] argument, int[] cost)
+        public static void print(int index, string[] argument, int[] cost)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -59,9 +60,54 @@ namespace cakes
             }
             Console.SetCursorPosition(0, 2);
             Console.WriteLine("->");
-            return null;
         }
-
-
+       public static void save_the_order(cake cake, int index, int price)
+       {
+            if (index != -1)
+            {
+                switch (index)
+                {
+                    case 0:
+                        Console.Clear();
+                        if (cake.size == null || cake.foarm == null || cake.glaze == null || cake.taste == null || cake.decorations == null || cake.number_of_cakes == null)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("Вы не настроили торт до конца");
+                            Console.WriteLine("Настройте его и возвращайтесь к выходу)");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("\nДля возвращения в меню настроек нажмите любую кнопку");
+                            ConsoleKey key = Console.ReadKey().Key;
+                            Console.ResetColor();
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            write_data(cake, price);
+                        }
+                        break;
+                    case 1:
+                        Console.Clear();
+                        Environment.Exit(0);
+                        break;
+                    default: break;
+                }
+            }
+       }
+        private static void write_data(cake cake, int price)
+        {
+            DateTime dateOrder = DateTime.Now;
+            string[] order = new string[8];
+            order[0] = $"Дата заказа: {Convert.ToString(dateOrder)}";
+            order[1] = $"\tразмер: {cake.size}";
+            order[2] = $"\tформа: {cake.foarm}";
+            order[3] = $"\tвкус: {cake.taste}";
+            order[4] = $"\tкол-во коржей: {cake.number_of_cakes}";
+            order[5] = $"\tглазурь: {cake.glaze}";
+            order[6] = $"\tдекор: {cake.decorations}";
+            order[7] = $"\tстоимость: {price}";
+            File.AppendAllLines("order.txt", order);
+            Console.ResetColor();
+            Console.Clear();
+        }
     }
 }
